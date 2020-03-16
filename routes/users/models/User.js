@@ -9,7 +9,8 @@ const UserSchema = new mongoose.Schema({
         picture: { type: String, default: '' }
     },
     address: { type: String, default: 'Please Update Address' },
-    favorites: { type: [], default: []}
+    favorites: { type: [], default: []},
+    admin: { type: Boolean }
 });
 
 UserSchema.pre('save', function(next) {
