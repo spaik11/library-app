@@ -66,7 +66,7 @@ module.exports = {
 
     register: async (req, res, next) => {
         const errors = validationResult(req);
-        const { name, email, password } = req.body;
+        const { name, email, password, admin } = req.body;
 
         if (!errors.isEmpty()) return res.render('auth/register', { errors: errors.array() })
 
@@ -81,7 +81,8 @@ module.exports = {
                     ['profile.name']: name,
                     ['profile.picture']: faker.image.avatar(),
                     email,
-                    password 
+                    password,
+                    admin
                 });
     
                 user.save()
