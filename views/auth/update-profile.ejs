@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update-Online Shopper</title>
+    <% include ../partials/head %> 
+    </head>
+    <body>
+    <% include ../partials/nav %>
+    <div class="container">
+        <div class="row">
+        <div
+            class="
+            col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form"
+        >
+                <h2>Update Profile:</h2>
+                <br />
+                <hr class="colorgraph" />
+                <form method="POST" action="/api/users/update-profile?_method=PUT">
+                    <fieldset>
+                        <img style="border-radius: 50%;" src="<%= user.profile.picture %>" alt="profile" />
+                        <div class="form-group">
+                            <br />
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" class="form-control input-lg" value="<%= user.profile.name %>">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" class="form-control input-lg" value="<%= user.email %>">
+                            <label for="address">Address:</label>
+                            <input type="text" name="address" class="form-control input-lg" value="<%= user.address %>">
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <input
+                        type="submit"
+                        class="btn btn-lg btn-success btn-block"
+                        value="Update Profile"
+                        />
+                    </div>
+                    </div>
+                </form>
+                <hr class="colorgraph" />
+                <% if (errors.length > 0) { %>
+                    <div class ="alert alert-danger alert-dismissible"> 
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <%= errors %>
+                    </div> 
+                <% } %>
+                <form method="POST" action="/api/users/update-password?_method=PUT">
+                    <fieldset>
+                        <h2>Change Password:</h2>
+                        <div class="form-group">
+                            <br />
+                            <label for="oldPassword">Old Password:</label>
+                            <input type="password" name="oldPassword" class="form-control input-lg" placeholder="Old Password">
+                            <label for="newPassword">New Password:</label>
+                            <input type="password" name="newPassword" class="form-control input-lg" placeholder="New Password">
+                            <label for="repeatNewPassword">Repeat New Password:</label>
+                            <input type="password" name="repeatNewPassword" class="form-control input-lg" placeholder="Repeat New Password">
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <input
+                        type="submit"
+                        class="btn btn-lg btn-success btn-block"
+                        value="Update Password"
+                        />
+                    </div>
+                    </div>
+                </form>
+                <hr class="colorgraph" />
+        </div>
+        </div>
+    </div>
+    <% include ../partials/scripts %>
+    </body>
+</html>

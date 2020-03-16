@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <% include ../partials/head %>
+    <title>Profile-OnlineShopper</title>
+    </head>
+    <body>
+    <% include ../partials/nav %>
+    <div class="container profile">
+        <div class="row">
+        <div class="col-sm-6 offset-sm-3 col-md-6 offset-md-3">
+            <hr class="colorgraph" />
+            <br />
+            <h1>Profile for <%= user.profile.name %> </h1>
+            <img style="border-radius: 50%;" src="<%= user.profile.picture %>"  alt="profile">
+            <br /><br />
+            <p>Name: <%= user.profile.name %> </p>
+            <p>Email: <%= user.email %> </p>
+            <p>Address: <%= user.address %> </p>
+            <a 
+                href="/api/users/update-profile" 
+                class="btn btn-primary btn-lg" 
+                style="color: white">Edit</a>
+            <hr class="colorgraph" />
+            <br />
+        </div>
+        </div>
+    </div>
+    <% include ../partials/scripts %>
+    </body>
+</html>

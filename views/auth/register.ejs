@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <title>Register-Online Shopper</title>
+    <% include ../partials/head %>
+    </head>
+    <body>
+    <% include ../partials/nav %>
+        <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form">
+        <% if (errors.length > 0) { %>
+            <% errors.forEach((err) => { %>
+            <div class ="alert alert-danger alert-dismissible"> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <%= err.msg %>
+            </div>
+            <% }) %>
+        <% } %>
+        <form role="form" method="POST" action="/api/users/register">
+            <fieldset>
+            <h2>Please Sign Up  <span class="button-checkbox">
+                <a href="/api/users/login" class="btn btn-link pull-right">Already A Member?</a>
+                </span></h2>
+            <hr class="colorgraph">
+                    <div class="form-group">
+                        <input type="text" name="name" id="name" class="form-control input-lg" placeholder="Full Name">
+            </div>
+            <div class="form-group">
+                        <input type="email" name="email" id="email" class="form-control input-lg" placeholder="Email Address">
+            </div>
+            <div class="form-group">
+                        <input type="password" name="password" id="password" class="form-control input-lg" placeholder="Password">
+                        </div>
+            <div class="form-group">
+                <label for="admin">Admin:</label>&nbsp;&nbsp;<input  type="checkbox" name="admin" id="admin" class=" input-lg" value="true">
+            </div>
+            <hr class="colorgraph">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                <input type="submit" class="btn btn-lg btn-primary btn-block" value="Register">
+                </div>
+            </div>
+            </fieldset>
+        </form>
+        </div>
+    </div>
+    </div>
+        <% include ../partials/scripts %>
+    </body>
+</html>

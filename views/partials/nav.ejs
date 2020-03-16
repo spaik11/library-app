@@ -1,0 +1,40 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <img src="/images/shopping_logo.png" style="width:75px; height:50px;" />
+    <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarsExampleDefault"
+    aria-controls="navbarsExampleDefault"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    >
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+        <a class="nav-link" href="/"
+        >Home <span class="sr-only">(current)</span></a
+        >
+      </li>
+    </ul>
+    <% if (!user) { %>
+    <span class="myRegisterNav">
+      <span style="color:white; padding-left:20px">
+        <a style="color:white;" href="/api/users/register">Register</a>/<a
+          style="color:white;"
+          href="/api/users/login">Login</a></span>
+    </span>
+    <% } else { %>
+      <span 
+        style="color: #ee802e" 
+        class="myNavGreeting">Hello &nbsp; 
+        <a 
+          href="/api/users/profile"
+          style="color: #ee802e"><%= user.profile.name.toUpperCase() %> </a>
+      </span>
+      <span class="myNavLogout"><a style="color: beige" href="/api/users/logout">Logout</a></span>
+    <% } %> 
+  </div>
+</nav>
