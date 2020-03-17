@@ -10,7 +10,7 @@ const UserSchema = new mongoose.Schema({
     },
     address: { type: String, default: 'Please Update Address' },
     favorites: { type: [], default: []},
-    admin: { type: Boolean }
+    admin: { type: Boolean, default: false }
 });
 
 UserSchema.pre('save', function(next) {

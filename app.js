@@ -10,6 +10,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
+const bookRouter = require('./routes/books/bookRoutes');
 const usersRouter = require('./routes/users/userRoutes');
 
 require('dotenv').config();
@@ -61,6 +62,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
+app.use('/api/books', bookRouter);
 // app.use('/api/admin', adminRouter);
 
 
