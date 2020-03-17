@@ -10,8 +10,8 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
-const bookRouter = require('./routes/books/bookRoutes');
 const usersRouter = require('./routes/users/userRoutes');
+const adminRouter = require('./routes/admin/books/adminRoutes');
 
 require('dotenv').config();
 const app = express();
@@ -62,8 +62,7 @@ app.use((req, res, next) => {
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/books', bookRouter);
-// app.use('/api/admin', adminRouter);
+app.use('/api/admin', adminRouter);
 
 
 // catch 404 and forward to error handler
