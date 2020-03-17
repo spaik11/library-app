@@ -7,7 +7,7 @@ Come 'checkout' this simple library app! You'll be able to see some of the most 
 ## Routes
 ***/*** - will render the home page where it will list a few features for the user.  
 
-***/api***
+***/api/users***
 * **/api/login** - the user will be able to login to the app. 
 
 * **/api/register** -  the user will be able to register into the app. You will get an option to select if you're an admin to get access to more information.
@@ -20,5 +20,8 @@ Come 'checkout' this simple library app! You'll be able to see some of the most 
 * **/auth/favorites** -  
 
 * **/auth/checkedout** -  
+
+***/api/admin***
+* **/addbooks** - administrator will be able to add books to the database.
 
 ---
