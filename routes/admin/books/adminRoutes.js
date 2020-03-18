@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const { 
-    getAddBooks, 
-    addBooks 
+    getAddBook, 
+    addBook
 } = require('./controllers/bookController');
 
-router.get('/addbooks', getAddBooks)
-router.post('/addbooks', addBooks)
+router.get('/addbook', getAddBook)
+router.post('/addbook', addBook)
 
 module.exports = router;
