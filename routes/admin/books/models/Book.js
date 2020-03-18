@@ -6,9 +6,9 @@ const BookSchema = new Schema({
     rank: { type: Number, default: 99 },
     title: { type: String, default: '' },
     author: { type: String, default: '' },
-    image: { type: String, default: '' },
+    book_image: { type: String, default: '' },
     description: { type: String, default: '' },
-    link: { type: String, default: '' },
+    amazon_product_url: { type: String, default: '' },
     available: { type: Boolean, default: true }
 });
 
