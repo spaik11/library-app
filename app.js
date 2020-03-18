@@ -11,7 +11,8 @@ const session = require('express-session');
 let MongoStore = require('connect-mongo')(session);
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users/userRoutes');
-const adminRouter = require('./routes/admin/books/adminRoutes');
+const adminRouter = require('./routes/admin/adminRoutes');
+const bookRouter = require('./routes/admin/books/bookRouter');
 
 require('dotenv').config();
 const app = express();
@@ -63,6 +64,7 @@ app.use((req, res, next) => {
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/books', bookRouter);
 
 
 // catch 404 and forward to error handler
