@@ -1,4 +1,5 @@
 const Book = require('../models/Book');
+const User = require('../../../users/models/User');
 
 module.exports = {
     getAddBook: (req, res, next) => {
@@ -21,5 +22,22 @@ module.exports = {
 
             return res.json({message: 'successfully created book!'});
         })
+    },
+
+    addToFavorites: (req, res, next) => {
+        User.findOne({ email: req.user.email }).then((user) => {
+            if (user.favorites.includes(req.params.title)) return res.render('main/single-book', { errors: req.flash('errors') });
+
+            user.favorites.push(req.params.title)
+            user.save((err) => {
+                if (err) return next(err);
+
+                return res.json({message: 'successfully saved to favorites!'});
+            })
+        })
+    },
+
+    checkOut: (req, res, next) => {
+        
     }
 }

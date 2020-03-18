@@ -22,7 +22,6 @@
   <body>
     <% include ../partials/nav %>
     <div class="container single-product">
-      <hr style="margin-bottom:40px;" class="colorgraph single-hr" />
       <div class="row">
         <div class="col-md-6 col-xs-6 ">
           <div class="thumbnail">
@@ -37,9 +36,27 @@
             <p><%=book.description%></p>
           </div>
         </div>
+        <div
+          class="col-md-4 col-xs-6 price"
+          style="padding-top:100px; margin: 0 auto;"
+        >
+        <h3><a href="<%= book.amazon_product_url %>" target="_blank">Buy on Amazon</a></h3>
+            <form method="post" action="">
+            <div class="btn-group" role="group">
+            <button type="submit" class="btn btn-primary btn-lg">
+              Checkout
+            </button>
+          </form>
+        </div>
+            <form method="post" action="/api/books/addtofavorites/<%= book.title %>?_method=PUT">
+            <div class="btn-group" role="group">
+            <button type="submit" class="btn btn-primary btn-lg">
+              Add to Favorites
+            </button>
+          </form>
+        </div>
         </div>
       </div>
-      <hr style="margin-top:40px;" class="colorgraph single-hr" />
     </div>
     <% include ../partials/scripts %>
   </body>
