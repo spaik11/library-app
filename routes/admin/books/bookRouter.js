@@ -1,16 +1,15 @@
 const router = require('express').Router();
-const Book = require('./models/Book');
 const {
+    getSingleBook,
+    getFavorites,
     addToFavorites,
+    delFromFavorites
 } = require('./controllers/bookController');
 
-router.get('/single-book/:id', (req, res, next) => {
-    Book.findById({ _id: req.params.id }, (err, book) => {
-        if (err) return next(err);
-        res.render('main/single-book', { book });
-    })
-})
+router.get('/single-book/:id', getSingleBook);
+router.get('/favorites', getFavorites);
 
 router.put('/addtofavorites/:title', addToFavorites);
+router.delete('/deletebook/:title', delFromFavorites);
 
 module.exports = router;

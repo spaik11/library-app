@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <% include ../partials/head %> 
+    </head>
+    <body>
+    <% include ../partials/nav %> 
+    <div id="container" class="fluid">
+    <main role="main">
+    <% include ../partials/jumbotron %> 
+    <% if (user.favorites.length > 0) { %>
+    <h1>My Favorites</h1>
+    <% user.favorites.forEach((favorite) => { %>
+            <div class="card-body">
+                <h5 class="card-title" style="width: 40em;"><%= favorite %></h5>
+                <form method="post" action="/api/books/deletebook/<%= favorite %>?_method=DELETE">
+                    <button type="submit" class="btn btn-danger">
+                        Delete
+                    </button>
+                    </form>
+            </div>
+    <% }) %>
+    <% } else {%>
+        <h1>You currently do not have any favorite books.</h1>
+    <% } %>
+    </main>
+</div>
+<% include ../partials/footer %> 
+<% include ../partials/scripts %> 
+</body>
+</html>

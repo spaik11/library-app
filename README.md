@@ -16,12 +16,13 @@ Come 'checkout' this simple library app! You'll be able to see some of the most 
 
 * **/api/update-profile** -  You will be able to update some basic user info, including changing your password.  
   
-***/auth***
+***/api/books***
 * **/auth/favorites** -  
 
 * **/auth/checkedout** -  
 
 ***/api/admin***
 * **/addbooks** - administrator will be able to add books to the database.
+
 
 ---
