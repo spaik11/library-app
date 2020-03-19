@@ -13,7 +13,7 @@ module.exports = {
     getSingleBook: (req, res, next) => {
         Book.findById({ _id: req.params.id }, (err, book) => {
             if (err) return next(err);
-            res.render('main/single-book', { book });
+            return res.render('main/single-book', { book });
         });
     },
 
@@ -30,7 +30,6 @@ module.exports = {
 
         book.save((err) => {
             if (err) return next(err);
-
             return res.json({message: 'successfully created book!'});
         })
     },
@@ -39,13 +38,14 @@ module.exports = {
         User.findOne({ email: req.user.email }).then((user) => {
             if (user.favorites.includes(req.params.title)) return res.render('main/single-book', { errors: req.flash('errors') });
 
-            user.favorites.push(req.params.title)
+            user.favorites.push(req.params.title);
+
             user.save((err) => {
                 if (err) return next(err);
-
                 return res.redirect('/');
             })
         })
+        .catch((err) => next(err));
     },
 
     delFromFavorites: (req, res, next) => {
@@ -54,12 +54,22 @@ module.exports = {
 
             user.save((err) => {
                 if (err) return next(err);
-                return res.redirect('/api/books/favorites')
+                return res.redirect('/api/books/favorites');
             })
         })
+        .catch((err) => next(err));
     },
 
-    checkOut: (req, res, next) => {
+    checkOutBook: (req, res, next) => {
+        Book.findOne({ _id: req.params.id }).then((book) => {
+            book.available = false;
+            book.owner = req.user._id;
 
+            book.save((err) => {
+                if (err) next(err);
+                return res.redirect('/');
+            })
+        })
+        .catch((err) => next(err));
     }
 }

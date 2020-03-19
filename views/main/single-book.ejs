@@ -41,14 +41,14 @@
         style="padding-top:100px; margin: 0 auto;"
     >
     <h3><a href="<%= book.amazon_product_url %>" target="_blank">Buy on Amazon</a></h3>
-        <form method="post" action="">
+        <form method="POST" action="/api/books/checkoutbook/<%= book._id %>?_method=PUT">
         <div class="btn-group" role="group">
         <button type="submit" class="btn btn-primary btn-lg">
             Checkout
         </button>
         </form>
     </div>
-        <form method="post" action="/api/books/addtofavorites/<%= book.title %>?_method=PUT">
+        <form method="POST" action="/api/books/addtofavorites/<%= book.title %>?_method=PUT">
         <div class="btn-group" role="group">
         <button type="submit" class="btn btn-primary btn-lg">
             Add to Favorites
