@@ -10,6 +10,11 @@ const UserSchema = new mongoose.Schema({
     },
     address: { type: String, default: 'Please Update Address' },
     favorites: { type: [], default: []},
+    books: [{
+        type: String,
+        checkOut: { type: Date, default: Date.now },
+        checkIn: { type: Date, default: Date.now }
+    }],
     admin: { type: Boolean, default: false }
 });
 

@@ -66,8 +66,21 @@ module.exports = {
             book.owner = req.user._id;
 
             book.save((err) => {
-                if (err) next(err);
-                return res.redirect('/');
+                if (err) return next(err);
+                return res.redirect(`/api/books/single-book/${req.params.id}`);
+            })
+        })
+        .catch((err) => next(err));
+    },
+
+    checkInBook: (req, res, next) => {
+        Book.findOne({ _id: req.params.id }).then((book) => {
+            book.available = true;
+            book.owner = 
+
+            book.save((err) => {
+                if (err) return next(err);
+                return res.redirect(`/api/books/single-book/${req.params.id}`);
             })
         })
         .catch((err) => next(err));
