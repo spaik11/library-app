@@ -8,8 +8,8 @@ const BookSchema = new Schema({
     book_image: { type: String, default: '' },
     description: { type: String, default: '' },
     amazon_product_url: { type: String, default: '' },
-    available: { 
-        type: Boolean,
+    status: { 
+        available: Boolean,
         owner: String
     }
 });

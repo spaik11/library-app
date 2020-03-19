@@ -62,8 +62,8 @@ module.exports = {
 
     checkOutBook: (req, res, next) => {
         Book.findOne({ _id: req.params.id }).then((book) => {
-            book.available = false;
-            book.owner = req.user._id;
+            book.status.available = false;
+            book.status.owner = req.user._id;
 
             book.save((err) => {
                 if (err) return next(err);
@@ -75,8 +75,8 @@ module.exports = {
 
     checkInBook: (req, res, next) => {
         Book.findOne({ _id: req.params.id }).then((book) => {
-            book.available = true;
-            book.owner = 
+            book.status.available = true;
+            book.status.owner = '';
 
             book.save((err) => {
                 if (err) return next(err);
