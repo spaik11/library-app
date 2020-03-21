@@ -42,7 +42,7 @@
     >
     <h3><a href="<%= book.amazon_product_url %>" target="_blank">Buy on Amazon</a></h3>
 
-        <form method="POST" action="/api/books/addtofavorites/<%= book.title %>?_method=PUT">
+        <form method="POST" action="/api/books/addtofavorites/<%= book._id %>?_method=PUT">
         <div class="btn-group" role="group">
         <button type="submit" class="btn btn-info btn-lg">
             Add to Favorites

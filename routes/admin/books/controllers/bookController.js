@@ -7,7 +7,10 @@ module.exports = {
     },
 
     getFavorites: (req, res, next) => {
-        return res.render('main/favorites');
+        Book.find({}).then((book) => {
+            console.log(book)
+            return res.render('main/favorites', { book });
+        });
     },
 
     getSingleBook: (req, res, next) => {
@@ -36,9 +39,9 @@ module.exports = {
 
     addToFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.favorites.includes(req.params.title)) return res.render('main/favorites', { errors: req.flash('errors') });
+            if (user.favorites.includes(req.params.id)) return res.render('main/favorites', { errors: req.flash('errors') });
 
-            user.favorites.push(req.params.title);
+            user.favorites.push( req.params.id );
             
             user.save((err) => {
                 if (err) return next(err);
@@ -50,7 +53,7 @@ module.exports = {
 
     delFromFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            user.favorites = user.favorites.filter((book) => book !== req.params.title);
+            user.favorites = user.favorites.filter((book) => book !== req.params.id);
 
             user.save((err) => {
                 if (err) return next(err);

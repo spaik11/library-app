@@ -11,9 +11,9 @@ const {
 router.get('/single-book/:id', getSingleBook);
 router.get('/favorites', getFavorites);
 
-router.put('/addtofavorites/:title', addToFavorites);
+router.put('/addtofavorites/:id', addToFavorites);
 router.put('/checkoutbook/:id', checkOutBook);
 router.put('/checkinbook/:id', checkInBook);
-router.delete('/deletebook/:title', delFromFavorites);
+router.delete('/deletebook/:id', delFromFavorites);
 
 module.exports = router;
