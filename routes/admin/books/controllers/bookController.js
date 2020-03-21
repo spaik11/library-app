@@ -36,10 +36,10 @@ module.exports = {
 
     addToFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.favorites.includes(req.params.title)) return res.render('main/single-book', { errors: req.flash('errors') });
+            if (user.favorites.includes(req.params.title)) return res.render('main/favorites', { errors: req.flash('errors') });
 
             user.favorites.push(req.params.title);
-
+            
             user.save((err) => {
                 if (err) return next(err);
                 return res.redirect('/');
