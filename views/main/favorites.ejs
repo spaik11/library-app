@@ -13,7 +13,7 @@
     <h1>My Favorites</h1>
     <% user.favorites.forEach((favorite) => { %>
             <div class="card-body">
-                <h5 class="card-title" style="width: 40em;"><a href="/api/books/single-book/<%= favorite %>"><%  %></a></h5>
+                <h5 class="card-title" style="width: 40em;"><a href="/api/books/single-book/<%= favorite %>"><%= favorite %></a></h5>
                 <form method="post" action="/api/books/deletebook/<%= favorite %>?_method=DELETE">
                     <button type="submit" class="btn btn-danger">
                         Delete
