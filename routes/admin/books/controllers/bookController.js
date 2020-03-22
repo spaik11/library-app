@@ -8,7 +8,6 @@ module.exports = {
 
     getFavorites: (req, res, next) => {
         Book.find({}).then((book) => {
-            console.log(book)
             return res.render('main/favorites', { book });
         });
     },
@@ -70,10 +69,22 @@ module.exports = {
 
             book.save((err) => {
                 if (err) return next(err);
-                return res.redirect(`/api/books/single-book/${req.params.id}`);
+                next();
             })
         })
         .catch((err) => next(err));
+    },
+
+    updateUserBook: (req, res, next) => {
+        User.findOne({ email: req.user.email }).then((user) => {
+            if (user.currentBook.includes(req.params.id)) return res.render('main/single-book', { errors: req.flash('errors') });
+            user.currentBook.push({ book: req.params.id, checkOut: Date.now() })
+
+            user.save((err) => {
+                if (err) return next(err);
+                return res.redirect(`/api/books/single-book/${req.params.id}`);
+            })
+        })
     },
 
     checkInBook: (req, res, next) => {

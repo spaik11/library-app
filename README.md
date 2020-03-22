@@ -17,7 +17,7 @@ Come 'checkout' this simple library app! You'll be able to see some of the most 
 * **/api/update-profile** -  You will be able to update some basic user info, including changing your password.  
   
 ***/api/books***
-* **/auth/favorites** -  
+* **/auth/favorites** -  this page will list all the books you clicked as a favorite.
 
 * **/auth/checkedout** -  
 
