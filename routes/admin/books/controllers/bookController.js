@@ -15,7 +15,7 @@ module.exports = {
     getSingleBook: (req, res, next) => {
         Book.findById({ _id: req.params.id }, (err, book) => {
             if (err) return next(err);
-            return res.render('main/single-book', { book });
+            return res.render('main/single-book', { book, errors: req.flash('error') });
         });
     },
 
@@ -38,7 +38,7 @@ module.exports = {
 
     addToFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.favorites.includes(req.params.id)) return res.render('main/favorites', { errors: req.flash('errors') });
+            if (user.favorites.includes(req.params.id)) return res.render('main/favorites', { errors: req.flash('error') });
 
             user.favorites.push( req.params.id );
             
@@ -64,8 +64,6 @@ module.exports = {
 
     checkOutBook: (req, res, next) => {
         Book.findOne({ _id: req.params.id }).then((book) => {
-            if (!book.status.available) return res.render('main/home-auth', { errors: 'This book is already checked out!' });
-
             book.status.available = false;
             book.status.owner = req.user._id;
             book.status.checkedOut = Date.now();
@@ -80,7 +78,13 @@ module.exports = {
 
     checkOutUserBook: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.checked_books.length > 0) return res.redirect('/');
+            if (user.checked_books.length > 0) {
+                Book.findById({ _id: req.params.id }, (err, book) => {
+                    if (err) return next(err);
+                    return res.render('main/single-book', { book, errors: 'You can only check out one book at a time!' });
+                });
+                return;
+            }
 
             user.checked_books.push({ bookTitle: req.params.id, checkOut: Date.now() });
 

@@ -1,5 +1,9 @@
 # Book Library App
-Come 'checkout' this simple library app! You'll be able to see some of the most popular books that are out.  
+Come 'checkout' this simple library app! The list of books are the current NY Times Best Sellers.
+Features:
+* **You can only check out one book at a time!**
+* **Add a book to your favorites**
+* **There is an option to buy the book through a link to Amazon**
 
 ![](https://media.giphy.com/media/aN5kVBEd1YH5e/giphy.gif)
 
@@ -17,9 +21,9 @@ Come 'checkout' this simple library app! You'll be able to see some of the most 
 * **/api/update-profile** -  You will be able to update some basic user info, including changing your password.  
   
 ***/api/books***
-* **/auth/favorites** -  this page will list all the books you clicked as a favorite.
+* **/favorites** -  this page will list all the books you clicked as a favorite.
 
-* **/auth/checkedout** -  
+* **/checkedout && /checkedin** -  this route will allow a user to check a book out and in. The homepage will show the current book that is checked out.
 
 ***/api/admin***
 * **/addbooks** - administrator will be able to add books to the database.

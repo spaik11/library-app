@@ -41,9 +41,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
-                        <% if (user._id.toString() === status.owner || !status.owner) { %>
-                            <a href="/api/books/single-book/<%= _id %>">More Info</a>
+                        <% if (status.available) { %>
+                            <p>Availability: Available to Check Out!</p>
+                        <% } else { %>
+                            <p>Not Available...</p>
                         <% } %>
+                            <a href="/api/books/single-book/<%= _id %>">More Info</a>
                     </div>
                     </div>
                 </div>

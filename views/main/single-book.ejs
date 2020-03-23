@@ -40,6 +40,14 @@
         class="col-md-4 col-xs-6 price"
         style="padding-top:100px; margin: 0 auto;"
     >
+    <% if (errors.length > 0) { %>
+        <div class ="alert alert-danger alert-dismissible"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <%= errors %>
+        </div> 
+    <% } %>
     <h3><a href="<%= book.amazon_product_url %>" target="_blank">Buy on Amazon</a></h3>
 
         <form method="POST" action="/api/books/addtofavorites/<%= book._id %>?_method=PUT">
