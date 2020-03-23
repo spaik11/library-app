@@ -66,6 +66,7 @@ module.exports = {
         Book.findOne({ _id: req.params.id }).then((book) => {
             book.status.available = false;
             book.status.owner = req.user._id;
+            book.status.checkedOut = Date.now();
 
             book.save((err) => {
                 if (err) return next(err);
@@ -75,24 +76,40 @@ module.exports = {
         .catch((err) => next(err));
     },
 
-    updateUserBook: (req, res, next) => {
+    checkOutUserBook: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
             if (user.currentBook.includes(req.params.id)) return res.render('main/single-book', { errors: req.flash('errors') });
-            user.currentBook.push({ book: req.params.id, checkOut: Date.now() })
+            user.currentBook.push({ book: req.params.id, checkOut: Date.now() });
 
             user.save((err) => {
                 if (err) return next(err);
                 return res.redirect(`/api/books/single-book/${req.params.id}`);
             })
         })
+        .catch((err) => next(err));
     },
 
     checkInBook: (req, res, next) => {
+        // cant pass in book
         Book.findOne({ _id: req.params.id }).then((book) => {
             book.status.available = true;
             book.status.owner = '';
 
             book.save((err) => {
+                if (err) return next(err);
+                next({book});
+            })
+        })
+        .catch((err) => next(err));
+    },
+
+    checkInUserBook: (req, res, next) => {
+        User.findOne({ email: req.user.email }).then((user) => {
+            if (user.currentBook.length > 0) return res.render('main/single-book', { errors: req.flash('errors') });
+
+            user.currentBook.shift();
+
+            user.save((err) => {
                 if (err) return next(err);
                 return res.redirect(`/api/books/single-book/${req.params.id}`);
             })
