@@ -15,7 +15,7 @@ router.get('/favorites', getFavorites);
 
 router.put('/addtofavorites/:id', addToFavorites);
 router.put('/checkoutbook/:id', checkOutBook, checkOutUserBook);
-router.put('/checkinbook/:id', checkInBook, checkInUserBook);
+router.put('/checkinbook/:id', checkInUserBook, checkInBook);
 router.delete('/deletebook/:id', delFromFavorites);
 
 module.exports = router;

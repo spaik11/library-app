@@ -64,6 +64,8 @@ module.exports = {
 
     checkOutBook: (req, res, next) => {
         Book.findOne({ _id: req.params.id }).then((book) => {
+            if (!book.status.available) return res.render('main/home-auth', { errors: 'This book is already checked out!' });
+
             book.status.available = false;
             book.status.owner = req.user._id;
             book.status.checkedOut = Date.now();
@@ -78,8 +80,8 @@ module.exports = {
 
     checkOutUserBook: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.currentBook.includes(req.params.id)) return res.render('main/single-book', { errors: req.flash('errors') });
-            user.currentBook.push({ book: req.params.id, checkOut: Date.now() });
+            if (user.checked_books.includes(req.params.id)) return res.render('main/home-auth', { errors: req.flash('errors') });
+            user.checked_books.push({ book: req.params.id, checkOut: Date.now() });
 
             user.save((err) => {
                 if (err) return next(err);
@@ -93,27 +95,26 @@ module.exports = {
         Book.findOne({ _id: req.params.id }).then((book) => {
             book.status.available = true;
             book.status.owner = '';
+            book.status.checkedIn = Date.now(); 
 
             book.save((err) => {
                 if (err) return next(err);
-                next(book);
+                return res.redirect(`/api/books/single-book/${req.params.id}`);
             })
         })
         .catch((err) => next(err));
     },
 
     checkInUserBook: (req, res, next) => {
-        // does not render the single-page
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.currentBook.length > 0) return res.render('main/single-book', { errors: req.flash('errors') });
 
-            user.currentBook.shift();
+            user.checked_books.shift();
 
             user.save((err) => {
                 if (err) return next(err);
-                return res.redirect(`/api/books/single-book/${req.params.id}`);
+                next();
             })
         })
         .catch((err) => next(err));
     }
-}
+};

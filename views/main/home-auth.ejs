@@ -11,7 +11,7 @@
     <% include ../partials/jumbotron %> 
     <div class="container">
         <div class="row">
-            <% book.forEach(({ rank, description, book_image, _id }) => { %>
+            <% book.forEach(({ rank, description, book_image, _id, status }) => { %>
                 <div class="col-md-4" style="width:20rem;">
                     <div class="card">
                     <img
@@ -22,7 +22,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
-                        <a href="/api/books/single-book/<%= _id %>">More Info</a>
+                        <% if (!status.owner) { %>
+                            <a href="/api/books/single-book/<%= _id %>">More Info</a>
+                        <% } %>
                     </div>
                     </div>
                 </div>

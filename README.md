@@ -26,3 +26,5 @@ Come 'checkout' this simple library app! You'll be able to see some of the most 
 
 
 ---
+# Notes
+Checked out book - check if the array of objects include the title 
