@@ -90,20 +90,20 @@ module.exports = {
     },
 
     checkInBook: (req, res, next) => {
-        // cant pass in book
         Book.findOne({ _id: req.params.id }).then((book) => {
             book.status.available = true;
             book.status.owner = '';
 
             book.save((err) => {
                 if (err) return next(err);
-                next({book});
+                next(book);
             })
         })
         .catch((err) => next(err));
     },
 
     checkInUserBook: (req, res, next) => {
+        // does not render the single-page
         User.findOne({ email: req.user.email }).then((user) => {
             if (user.currentBook.length > 0) return res.render('main/single-book', { errors: req.flash('errors') });
 
