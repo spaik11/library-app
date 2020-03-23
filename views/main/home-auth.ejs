@@ -9,6 +9,25 @@
     <div id="container" class="fluid">
     <main role="main">
     <% include ../partials/jumbotron %> 
+    <% if (errors.length > 0) { %>
+        <div class ="alert alert-danger alert-dismissible"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <%= errors %>
+        </div> 
+    <% } %>
+    <div>
+        <div>
+            <h1>Current Book:</h1>
+                <% if (user.checked_books.length > 0) { %>
+                    <p><a><%= user.checked_books[0].bookTitle %> </a></p>
+                <% } else { %>
+                    <p>You do not currently have a book checked out.</p>
+                <% } %>
+            
+        </div>
+    </div>
     <div class="container">
         <div class="row">
             <% book.forEach(({ rank, description, book_image, _id, status }) => { %>
@@ -22,7 +41,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
-                        <% if (!status.owner) { %>
+                        <% if (user._id.toString() === status.owner || !status.owner) { %>
                             <a href="/api/books/single-book/<%= _id %>">More Info</a>
                         <% } %>
                     </div>

@@ -72,7 +72,7 @@ module.exports = {
 
             book.save((err) => {
                 if (err) return next(err);
-                next();
+                return res.redirect(`/api/books/single-book/${req.params.id}`);
             })
         })
         .catch((err) => next(err));
@@ -80,12 +80,13 @@ module.exports = {
 
     checkOutUserBook: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.checked_books.includes(req.params.id)) return res.render('main/home-auth', { errors: req.flash('errors') });
-            user.checked_books.push({ book: req.params.id, checkOut: Date.now() });
+            if (user.checked_books.length > 0) return res.redirect('/');
+
+            user.checked_books.push({ bookTitle: req.params.id, checkOut: Date.now() });
 
             user.save((err) => {
                 if (err) return next(err);
-                return res.redirect(`/api/books/single-book/${req.params.id}`);
+                next();
             })
         })
         .catch((err) => next(err));
@@ -107,8 +108,7 @@ module.exports = {
 
     checkInUserBook: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-
-            user.checked_books.shift();
+            user.checked_books.pop();
 
             user.save((err) => {
                 if (err) return next(err);
