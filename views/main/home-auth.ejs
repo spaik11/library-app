@@ -42,9 +42,13 @@
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
                         <% if (status.available) { %>
-                            <p>Availability: Available to Check Out!</p>
+                            <p style="color: green">Available: Yes! Click below.</p>
                         <% } else { %>
-                            <p>Not Available...</p>
+                            <% if (user.id === status.owner) { %>
+                                <p style="color: blue">Available: Currently Reading.</p>
+                            <% } else { %>
+                                <p style="color: red;">Available: Not yet...</p>
+                            <% } %>
                         <% } %>
                             <a href="/api/books/single-book/<%= _id %>">More Info</a>
                     </div>

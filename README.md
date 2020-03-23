@@ -1,9 +1,12 @@
 # Book Library App
-Come 'checkout' this simple library app! The list of books are the current NY Times Best Sellers.
+Come 'checkout' this simple library app! The list of books are the current NY Times Best Sellers.  
 Features:
-* **You can only check out one book at a time!**
-* **Add a book to your favorites**
-* **There is an option to buy the book through a link to Amazon**
+* Users: 
+  * **You can only check out one book at a time!**
+  * **Add a book to your favorites**
+  * **There is an option to buy the book through a link to Amazon**
+* Admin:
+  * **The admin can add books to the database**
 
 ![](https://media.giphy.com/media/aN5kVBEd1YH5e/giphy.gif)
 

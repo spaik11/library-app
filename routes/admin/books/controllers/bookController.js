@@ -38,7 +38,13 @@ module.exports = {
 
     addToFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.favorites.includes(req.params.id)) return res.render('main/favorites', { errors: req.flash('error') });
+            if (user.favorites.includes(req.params.id)) {
+                Book.findById({ _id: req.params.id }, (err, book) => {
+                    if (err) return next();
+                    return res.render('main/single-book', { book, errors: 'This book is already in your favorites.' });
+                });
+                return;
+            }
 
             user.favorites.push( req.params.id );
             
@@ -80,7 +86,7 @@ module.exports = {
         User.findOne({ email: req.user.email }).then((user) => {
             if (user.checked_books.length > 0) {
                 Book.findById({ _id: req.params.id }, (err, book) => {
-                    if (err) return next(err);
+                    if (err) return next();
                     return res.render('main/single-book', { book, errors: 'You can only check out one book at a time!' });
                 });
                 return;
