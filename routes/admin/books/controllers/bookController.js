@@ -1,6 +1,7 @@
 const Book = require('../models/Book');
 const User = require('../../../users/models/User');
 const Pusher = require('pusher');
+const moment = require('moment');
 
 const pusher = new Pusher({
     appId: process.env.APP_ID,
@@ -81,15 +82,10 @@ module.exports = {
         Book.findOne({ title: req.params.title }).then((book) => {
             book.status.available = false;
             book.status.owner = req.user._id;
-            book.status.checkedOut = Date.now();
-            console.log(book)
+            book.status.checkedOut = moment().format('MMMM Do YYYY, h:mm:ss a');
             
             book.save((err) => {
                 if (err) return next(err);
-
-                pusher.trigger('library-app', 'book-checkout', {
-                    "message": "Please return the book in 14 days!"
-                });
                 return res.redirect(`/api/books/single-book/${req.params.title}`);
             })
             
@@ -107,7 +103,7 @@ module.exports = {
                 return;
             }
 
-            user.checked_books.push({ bookTitle: req.params.title, checkOut: Date.now() });
+            user.checked_books.push({ bookTitle: req.params.title, checkOut: moment().format('MMMM Do YYYY, h:mm:ss a') });
 
             user.save((err) => {
                 if (err) return next(err);
@@ -121,7 +117,7 @@ module.exports = {
         Book.findOne({ title: req.params.title }).then((book) => {
             book.status.available = true;
             book.status.owner = '';
-            book.status.checkedIn = Date.now(); 
+            book.status.checkedIn = moment().format('MMMM Do YYYY, h:mm:ss a');
 
             book.save((err) => {
                 if (err) return next(err);

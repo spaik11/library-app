@@ -11,8 +11,8 @@ const BookSchema = new Schema({
     status: { 
         available: Boolean,
         owner: String,
-        checkedOut: Date,
-        checkedIn: Date
+        checkedOut: String,
+        checkedIn: String
     }
 });
 

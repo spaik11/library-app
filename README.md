@@ -33,5 +33,8 @@ Features:
 
 
 ---
-# Notes
-Checked out book - check if the array of objects include the title 
+# Dependencies
+NYTimes API
+Faker
+Moment
+Bcrypt JS

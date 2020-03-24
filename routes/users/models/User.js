@@ -12,8 +12,8 @@ const UserSchema = new mongoose.Schema({
     favorites: { type: [], default: []},
     checked_books: [{
         bookTitle: String,
-        checkOut: Date,
-        checkIn: Date
+        checkOut: String,
+        checkIn: String
     }],
     admin: { type: Boolean, default: false }
 });
