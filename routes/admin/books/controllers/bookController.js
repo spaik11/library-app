@@ -83,6 +83,7 @@ module.exports = {
             book.status.available = false;
             book.status.owner = req.user._id;
             book.status.checkedOut = moment().format('MMMM Do YYYY, h:mm:ss a');
+            // need to do a check to clear out the book check-in date
             
             book.save((err) => {
                 if (err) return next(err);
@@ -137,5 +138,12 @@ module.exports = {
             })
         })
         .catch((err) => next(err));
+    },
+
+    viewCheckedOutBooks: (req, res, next) => {
+        Book.find({}).then((books) => {
+            const checkedOutBooks = books.filter((book) => !book.status.available);
+            return res.render('admin/books-out', { checkedOutBooks });
+        })
     }
 };

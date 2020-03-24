@@ -1,4 +1,6 @@
 # Book Library App
+![](./public/images/books.gif)
+
 Come 'checkout' this simple library app! The list of books are the current NY Times Best Sellers.  
 Features:
 * Users: 
@@ -8,10 +10,8 @@ Features:
 * Admin:
   * **The admin can add books to the database**
 
-![](./public/images/books.gif)
-
 ---
-## Routes
+### Routes
 ***/*** - will render the home page where it will list a few features for the user.  
 
 ***/api/users***
@@ -33,7 +33,7 @@ Features:
 
 
 ---
-# Dependencies
+### Dependencies
 * NYTimes API  
 * Faker  
 * Moment  

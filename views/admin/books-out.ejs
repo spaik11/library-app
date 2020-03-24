@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Checked Out Books</title>
+        <% include ../partials/head %> 
+    </head>
+    <body>
+    <% include ../partials/nav %> 
+    <div id="container" class="fluid">
+    <main role="main">
+    <% include ../partials/jumbotron %> 
+    <% if (errors.length > 0) { %>
+        <div class ="alert alert-danger alert-dismissible"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <%= errors %>
+        </div> 
+    <% } %>
+    <div class="container">
+    <div class="row">
+    <% checkedOutBooks.forEach(({title, book_image, status: {owner, checkedOut}}) => { %>
+        <div class="col-md-4" style="width:20rem;">
+            <div class="card">
+            <img
+                src="<%= book_image %>"
+                class="card-img-top"
+                alt="..."
+            />
+            <div class="card-body">
+                <h5 class="card-title">Owner: <%= owner %></h5>
+                <p class="card-text">Date Checked Out: <%= checkedOut %></p>
+            </div>
+            </div>
+        </div>
+    <% }) %> 
+    </div>
+    </div>
+    </main>
+</div>
+<% include ../partials/footer %> 
+<% include ../partials/scripts %> 
+</body>
+</html>

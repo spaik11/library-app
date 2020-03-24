@@ -17,6 +17,12 @@
         <%= errors %>
         </div> 
     <% } %>
+    <% if (user.admin) { %>
+        <div>
+            <a href="/api/admin/viewcheckedbooks">View Checked Out Books Only</a>
+        </div>
+        <hr/>
+    <% } %>
     <div>
         <div>
             <h1>Current Book:</h1>
@@ -29,6 +35,7 @@
             
         </div>
     </div>
+    <hr />
     <div class="container">
         <div class="row">
             <% book.forEach(({ rank, title, description, book_image, _id, status }) => { %>
