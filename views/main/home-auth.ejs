@@ -30,7 +30,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <% book.forEach(({ rank, description, book_image, _id, status }) => { %>
+            <% book.forEach(({ rank, title, description, book_image, _id, status }) => { %>
                 <div class="col-md-4" style="width:20rem;">
                     <div class="card">
                     <img
@@ -50,7 +50,7 @@
                                 <p style="color: red;">Available: Not yet...</p>
                             <% } %>
                         <% } %>
-                            <a href="/api/books/single-book/<%= _id %>">More Info</a>
+                            <a href="/api/books/single-book/<%= title %>">More Info</a>
                     </div>
                     </div>
                 </div>

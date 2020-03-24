@@ -10,12 +10,12 @@ const {
     checkInUserBook
 } = require('./controllers/bookController');
 
-router.get('/single-book/:id', getSingleBook);
+router.get('/single-book/:title', getSingleBook);
 router.get('/favorites', getFavorites);
 
-router.put('/addtofavorites/:id', addToFavorites);
-router.put('/checkoutbook/:id', checkOutUserBook, checkOutBook);
-router.put('/checkinbook/:id', checkInUserBook, checkInBook);
-router.delete('/deletebook/:id', delFromFavorites);
+router.put('/addtofavorites/:title', addToFavorites);
+router.put('/checkoutbook/:title', checkOutUserBook, checkOutBook);
+router.put('/checkinbook/:title', checkInUserBook, checkInBook);
+router.delete('/deletebook/:title', delFromFavorites);
 
 module.exports = router;

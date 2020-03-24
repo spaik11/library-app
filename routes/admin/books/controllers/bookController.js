@@ -1,5 +1,14 @@
 const Book = require('../models/Book');
 const User = require('../../../users/models/User');
+const Pusher = require('pusher');
+
+const pusher = new Pusher({
+    appId: process.env.APP_ID,
+    key: process.env.KEY,
+    secret: process.env.SECRET,
+    cluster: process.env.CLUSTER,
+    encrypted: true
+});
 
 module.exports = {
     getAddBook: (req, res, next) => {
@@ -13,7 +22,7 @@ module.exports = {
     },
 
     getSingleBook: (req, res, next) => {
-        Book.findById({ _id: req.params.id }, (err, book) => {
+        Book.findOne({ title: req.params.title }, (err, book) => {
             if (err) return next(err);
             return res.render('main/single-book', { book, errors: req.flash('error') });
         });
@@ -38,15 +47,15 @@ module.exports = {
 
     addToFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            if (user.favorites.includes(req.params.id)) {
-                Book.findById({ _id: req.params.id }, (err, book) => {
+            if (user.favorites.includes(req.params.title)) {
+                Book.findOne({ title: req.params.title }, (err, book) => {
                     if (err) return next();
                     return res.render('main/single-book', { book, errors: 'This book is already in your favorites.' });
                 });
                 return;
             }
 
-            user.favorites.push( req.params.id );
+            user.favorites.push( req.params.title );
             
             user.save((err) => {
                 if (err) return next(err);
@@ -58,7 +67,7 @@ module.exports = {
 
     delFromFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
-            user.favorites = user.favorites.filter((book) => book !== req.params.id);
+            user.favorites = user.favorites.filter((book) => book !== req.params.title);
 
             user.save((err) => {
                 if (err) return next(err);
@@ -69,15 +78,21 @@ module.exports = {
     },
 
     checkOutBook: (req, res, next) => {
-        Book.findOne({ _id: req.params.id }).then((book) => {
+        Book.findOne({ title: req.params.title }).then((book) => {
             book.status.available = false;
             book.status.owner = req.user._id;
             book.status.checkedOut = Date.now();
-
+            console.log(book)
+            
             book.save((err) => {
                 if (err) return next(err);
-                return res.redirect(`/api/books/single-book/${req.params.id}`);
+
+                pusher.trigger('library-app', 'book-checkout', {
+                    "message": "Please return the book in 14 days!"
+                });
+                return res.redirect(`/api/books/single-book/${req.params.title}`);
             })
+            
         })
         .catch((err) => next(err));
     },
@@ -85,14 +100,14 @@ module.exports = {
     checkOutUserBook: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
             if (user.checked_books.length > 0) {
-                Book.findById({ _id: req.params.id }, (err, book) => {
+                Book.findOne({ title: req.params.title }, (err, book) => {
                     if (err) return next();
                     return res.render('main/single-book', { book, errors: 'You can only check out one book at a time!' });
                 });
                 return;
             }
 
-            user.checked_books.push({ bookTitle: req.params.id, checkOut: Date.now() });
+            user.checked_books.push({ bookTitle: req.params.title, checkOut: Date.now() });
 
             user.save((err) => {
                 if (err) return next(err);
@@ -103,14 +118,14 @@ module.exports = {
     },
 
     checkInBook: (req, res, next) => {
-        Book.findOne({ _id: req.params.id }).then((book) => {
+        Book.findOne({ title: req.params.title }).then((book) => {
             book.status.available = true;
             book.status.owner = '';
             book.status.checkedIn = Date.now(); 
 
             book.save((err) => {
                 if (err) return next(err);
-                return res.redirect(`/api/books/single-book/${req.params.id}`);
+                return res.redirect(`/api/books/single-book/${req.params.title}`);
             })
         })
         .catch((err) => next(err));

@@ -14,4 +14,8 @@ router.get('/', (req, res, next) => {
     .catch((err) => next(err));
 })
 
+router.get('/pusher', (req, res, next) => {
+  return res.render('main/pusher');
+})
+
 module.exports = router;
