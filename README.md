@@ -9,6 +9,7 @@ Features:
   * **There is an option to buy the book through a link to Amazon**
 * Admin:
   * **The admin can add books to the database**
+  * **Administrator can view all the books that are currently checked out**
 
 ---
 ### Routes
@@ -30,7 +31,7 @@ Features:
 
 ***/api/admin***
 * **/addbooks** - administrator will be able to add books to the database.
-
+* **/viewcheckedbooks** - administrator will be able to view all the books that are currently checked out.
 
 ---
 ### Dependencies

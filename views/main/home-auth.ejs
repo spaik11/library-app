@@ -18,21 +18,20 @@
         </div> 
     <% } %>
     <% if (user.admin) { %>
-        <div>
-            <a href="/api/admin/viewcheckedbooks">View Checked Out Books Only</a>
+        <div class="admin">
+            <h3><a href="/api/admin/viewcheckedbooks">All Checked Out Books</a></h3>
         </div>
         <hr/>
     <% } %>
-    <div>
+    <div class="admin">
         <div>
-            <h1>Current Book:</h1>
+            <h3>Current Book:</h3>
                 <% if (user.checked_books.length > 0) { %>
                     <p>Title: <%= user.checked_books[0].bookTitle %></p>
                     <p>Checked Out: <%= user.checked_books[0].checkOut %></p>
                 <% } else { %>
                     <p>You do not currently have a book checked out.</p>
                 <% } %>
-            
         </div>
     </div>
     <hr />

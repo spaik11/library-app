@@ -20,19 +20,13 @@
     <div class="container">
     <div class="row">
     <% checkedOutBooks.forEach(({title, book_image, status: {owner, checkedOut}}) => { %>
-        <div class="col-md-4" style="width:20rem;">
             <div class="card">
-            <img
-                src="<%= book_image %>"
-                class="card-img-top"
-                alt="..."
-            />
             <div class="card-body">
                 <h5 class="card-title">Owner: <%= owner %></h5>
+                <p class="card-text">Title: <%= title %></p>
                 <p class="card-text">Date Checked Out: <%= checkedOut %></p>
             </div>
             </div>
-        </div>
     <% }) %> 
     </div>
     </div>
