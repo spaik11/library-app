@@ -21,7 +21,8 @@
         <div>
             <h1>Current Book:</h1>
                 <% if (user.checked_books.length > 0) { %>
-                    <p><a><%= user.checked_books[0].bookTitle %> </a></p>
+                    <p>Title: <%= user.checked_books[0].bookTitle %></p>
+                    <p>Checked Out: <%= user.checked_books[0].checkOut %></p>
                 <% } else { %>
                     <p>You do not currently have a book checked out.</p>
                 <% } %>

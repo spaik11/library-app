@@ -8,7 +8,7 @@ Features:
 * Admin:
   * **The admin can add books to the database**
 
-![](https://media.giphy.com/media/aN5kVBEd1YH5e/giphy.gif)
+![](./public/images/books.gif)
 
 ---
 ## Routes
@@ -34,7 +34,7 @@ Features:
 
 ---
 # Dependencies
-NYTimes API
-Faker
-Moment
-Bcrypt JS
+* NYTimes API  
+* Faker  
+* Moment  
+* Bcrypt JS  
