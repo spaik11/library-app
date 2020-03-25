@@ -5,13 +5,11 @@ const {
     getAddBook, 
     addBook,
     viewCheckedOutBooks,
-    updateBookDatabase
 } = require('./controllers/adminController');
 
 router.get('/', adminValidation, getAdminHome);
 router.get('/addbook', adminValidation, getAddBook);
 router.get('/viewcheckedbooks', adminValidation, viewCheckedOutBooks);
-router.get('/updatedatabase', adminValidation, updateBookDatabase);
 
 router.post('/addbook', addBook);
 

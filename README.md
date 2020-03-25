@@ -11,6 +11,7 @@ Features:
   * **The admin can add books to the database**
   * **Administrator can view all the books that are currently checked out**
 
+
 ---
 ### Routes
 ***/*** - will render the home page where it will list a few features for the user.  
@@ -31,6 +32,7 @@ Features:
 
 ***/api/admin***
 * **/addbooks** - administrator will be able to add books to the database.
+
 * **/viewcheckedbooks** - administrator will be able to view all the books that are currently checked out.
 
 ---

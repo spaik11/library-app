@@ -31,9 +31,5 @@ module.exports = {
             const checkedOutBooks = books.filter((book) => !book.status.available);
             return res.render('admin/books-out', { checkedOutBooks });
         });
-    },
-
-    updateBookDatabase: (req, res, next) => {
-
     }
 };

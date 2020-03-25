@@ -43,9 +43,9 @@
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
                         <% if (status.available) { %>
-                            <p style="color: green">Available: Yes! Click below.</p>
+                            <p style="color: green">Available: Yes! Click the link below.</p>
                         <% } else { %>
-                            <% if (user.id === status.owner) { %>
+                            <% if (user.id === status.owner.id) { %>
                                 <p style="color: blue">Available: Currently Reading.</p>
                             <% } else { %>
                                 <p style="color: red;">Available: Not yet...</p>

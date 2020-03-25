@@ -1,15 +1,6 @@
 const Book = require('../models/Book');
 const User = require('../../../users/models/User');
-const Pusher = require('pusher');
 const moment = require('moment');
-
-const pusher = new Pusher({
-    appId: process.env.APP_ID,
-    key: process.env.KEY,
-    secret: process.env.SECRET,
-    cluster: process.env.CLUSTER,
-    encrypted: true
-});
 
 module.exports = {
     getFavorites: (req, res, next) => {
@@ -65,7 +56,6 @@ module.exports = {
             book.status.owner.email = req.user.email;
             book.status.checkedOut = moment().format('MMMM Do YYYY, h:mm:ss a');
             book.status.checkedIn = '';
-            // need to do a check to clear out the book check-in date
             
             book.save((err) => {
                 if (err) return next(err);
