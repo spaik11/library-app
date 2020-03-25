@@ -23,6 +23,11 @@
           <a class="nav-link" href="/api/books/favorites">Favorites</a>
         </li>
       <% } %>
+      <% if (user.admin === true) { %>
+        <li class="nav-item active" style="padding-left: 15px;">
+          <a class="nav-link" href="/api/admin/viewcheckedbooks">Book Status</a>
+        </li>
+      <% } %>
     </ul>
     <% if (!user) { %>
     <span class="myRegisterNav">
