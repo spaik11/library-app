@@ -58,7 +58,7 @@
         </button>
         </form>
     </div>
-    <% if (user.id === book.status.owner) { %>
+    <% if (user.id === book.status.owner.id) { %>
         <form method="POST" action="/api/books/checkinbook/<%= book.title %>?_method=PUT">
             <div class="btn-group" role="group">
             <button type="submit" class="btn btn-danger btn-lg">

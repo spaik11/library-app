@@ -81,8 +81,11 @@ module.exports = {
     checkOutBook: (req, res, next) => {
         Book.findOne({ title: req.params.title }).then((book) => {
             book.status.available = false;
-            book.status.owner = req.user._id;
+            book.status.owner.id = req.user._id;
+            book.status.owner.name = req.user.profile.name;
+            book.status.owner.email = req.user.email;
             book.status.checkedOut = moment().format('MMMM Do YYYY, h:mm:ss a');
+            book.status.checkedIn = '';
             // need to do a check to clear out the book check-in date
             
             book.save((err) => {
@@ -141,9 +144,13 @@ module.exports = {
     },
 
     viewCheckedOutBooks: (req, res, next) => {
-        Book.find({}).then((books) => {
-            const checkedOutBooks = books.filter((book) => !book.status.available);
-            return res.render('admin/books-out', { checkedOutBooks });
-        })
+        if (req.isAuthenticated()) {
+            Book.find({}).then((books) => {
+                const checkedOutBooks = books.filter((book) => !book.status.available);
+                return res.render('admin/books-out', { checkedOutBooks });
+            });
+            return;
+        }
+        return res.redirect('/');
     }
 };

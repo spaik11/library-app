@@ -10,7 +10,11 @@ const BookSchema = new Schema({
     amazon_product_url: { type: String, default: '' },
     status: { 
         available: Boolean,
-        owner: String,
+        owner: {
+            id: String,
+            name: String,
+            email: String
+        },
         checkedOut: String,
         checkedIn: String
     }
