@@ -17,21 +17,14 @@
         <%= errors %>
         </div> 
     <% } %>
-    <div class="container">
-        <h1>Books That Are Currently Checked Out</h1>
+    <div class="admin">
+        <h1>Administrator Functions</h1>
         <hr/>
-    <% checkedOutBooks.forEach(({title, book_image, status: { owner: { id, name, email }, checkedOut }}) => { %>
-            <div class="card">
-            <div class="card-body">
-                <h3 class="card-title">Currently checked out by: <%= name.toUpperCase() %></h3>
-                <h6 class="card-title">Contact Info: <%= email %></h6>
-                <p class="card-text">Title: <%= title %></p>
-                <p class="card-text">Date Checked Out: <%= checkedOut %></p>
-                <a href = "mailto:<%= email %>">Send Email</a>
-            </div>
-            </div>
-    <% }) %> 
-    </div>
+            <p><a href="/api/admin/viewcheckedbooks">All Checked Out Books</a></p>
+            <p><a href="/api/admin/addbook">Add a Book</a></p>
+            <p><a href="/api/admin/updatedatabase">Update Database</a></p>
+            <hr/>
+        </div>
     </main>
 </div>
 <% include ../partials/footer %> 
