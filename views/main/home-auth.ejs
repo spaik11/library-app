@@ -23,6 +23,7 @@
                 <% if (user.checked_books.length > 0) { %>
                     <p>Title: <%= user.checked_books[0].bookTitle %></p>
                     <p>Checked Out: <%= user.checked_books[0].checkOut %></p>
+                    <p>Due: <%= user.checked_books[0].due_date %></p>
                 <% } else { %>
                     <p>You do not currently have a book checked out.</p>
                 <% } %>

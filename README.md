@@ -5,6 +5,7 @@ Come 'checkout' this simple library app! The list of books are the current NY Ti
 Features:
 * Users: 
   * **You can only check out one book at a time!**
+  * **The book will be due in 14 days of when you check it out**
   * **Add a book to your favorites**
   * **There is an option to buy the book through a link to Amazon**
 * Admin:

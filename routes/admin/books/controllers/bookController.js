@@ -54,9 +54,10 @@ module.exports = {
             book.status.owner.id = req.user._id;
             book.status.owner.name = req.user.profile.name;
             book.status.owner.email = req.user.email;
-            book.status.checkedOut = moment().format('MMMM Do YYYY, h:mm:ss a');
+            book.status.checkedOut = moment().format('lll');
             book.status.checkedIn = '';
-            
+            book.status.due_date = moment().add(14, 'days').format('lll');
+
             book.save((err) => {
                 if (err) return next(err);
                 return res.redirect(`/api/books/single-book/${req.params.title}`);
@@ -76,7 +77,7 @@ module.exports = {
                 return;
             }
 
-            user.checked_books.push({ bookTitle: req.params.title, checkOut: moment().format('MMMM Do YYYY, h:mm:ss a') });
+            user.checked_books.push({ bookTitle: req.params.title, checkOut: moment().format('lll'), due_date: moment().add(14, 'days').format('lll') });
 
             user.save((err) => {
                 if (err) return next(err);
@@ -90,7 +91,8 @@ module.exports = {
         Book.findOne({ title: req.params.title }).then((book) => {
             book.status.available = true;
             book.status.owner = '';
-            book.status.checkedIn = moment().format('MMMM Do YYYY, h:mm:ss a');
+            book.status.checkedIn = moment().format('lll');
+            book.status.due_date = '';
 
             book.save((err) => {
                 if (err) return next(err);

@@ -2,6 +2,7 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 a {
 text-decoration: none;
@@ -43,7 +44,7 @@ text-decoration: none;
 font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
 .myRegisterNav a:hover {
-color: grey;
+color: #090979;
 }
 .myNavGreeting {
 color: white;
@@ -54,7 +55,7 @@ font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 color: white;
 }
 .myNavGreeting a:hover {
-color: grey;
+color: #090979;
 text-decoration: none;
 }
 .myNavLogout {
@@ -65,15 +66,14 @@ padding-left: 10px;
 color: white;
 }
 .myNavLogout a:hover {
-color: grey;
+color: #090979;
 }
 .nav-category-list {
 text-decoration: none;
 }
 .nav-category-list:hover {
-color: red;
+color: #090979;
 }
-
 .profile {
 margin-top: 150px;
 }
@@ -81,7 +81,6 @@ margin-top: 150px;
 height: 175px;
 width: 175px;
 }
-
 .admin {
   margin-left: 40px;
 }

@@ -16,7 +16,8 @@ const BookSchema = new Schema({
             email: String
         },
         checkedOut: String,
-        checkedIn: String
+        checkedIn: String,
+        due_date: String
     }
 });
 
