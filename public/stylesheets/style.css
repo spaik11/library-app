@@ -28,12 +28,10 @@ font-size: 5em;
 .opening-card {
 border-radius: 0;
 }
-/*Form CSS*/
 .my-form {
 width: 50%;
 margin: 200px auto 0 auto;
 }
-/*Navbar*/
 .myRegisterNav {
 color: white;
 padding-left: 20px;
@@ -90,7 +88,22 @@ width: 175px;
   font-size: 3.5em;
 }
 }
-
 .admin {
   margin-left: 40px;
+}
+.col-md-4 {
+  margin-bottom: 50px;
+}
+.card-img-top {
+  height: 300px;
+}
+.my-h1 {
+  padding-top: 30px;
+}
+.opening-card {
+  border-radius: 0;
+}
+.img-responsive {
+  height: 500px;
+  width: 500px;
 }
