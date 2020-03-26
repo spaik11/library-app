@@ -1,6 +1,9 @@
 {
   "name": "library-app-sp",
   "version": "0.0.0",
+  "engines": {
+    "node": "13.1.x"
+  },
   "private": true,
   "scripts": {
     "dev": "nodemon ./bin/www",
