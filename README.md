@@ -3,13 +3,13 @@
 
 Come 'checkout' this simple library app! The list of books are the current NY Times Best Sellers.  
 Features:
-* Users: 
+* User: 
   * **You can only check out one book at a time!**
   * **The book will be due in 14 days of when you check it out**
   * **Add a book to your favorites**
   * **There is an option to buy the book through a link to Amazon**
 * Admin:
-  * **The admin can add books to the database**
+  * **Administrator can add/delete books to the database**
   * **Administrator can view all the books that are currently checked out**
 
 ---
@@ -31,13 +31,15 @@ Features:
 * **/checkedout && /checkedin** -  this route will allow a user to check a book out and in. The homepage will show the current book that is checked out.
 
 ***/api/admin***
-* **/addbooks** - administrator will be able to add books to the database.
+* **/addbook** - administrator will be able to add a book to the database.
+
+* **/deletebook** - administrator will be able to delete a book from the database.
 
 * **/viewcheckedbooks** - administrator will be able to view all the books that are currently checked out.
 
 ---
 ### Dependencies
 * NYTimes API  
-* Faker  
+* Faker
 * Moment  
-* Bcrypt JS  
+* Bcrypt JS

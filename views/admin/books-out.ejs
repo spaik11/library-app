@@ -20,12 +20,13 @@
     <div class="container">
         <h1>Books That Are Currently Checked Out</h1>
         <hr/>
-    <% checkedOutBooks.forEach(({title, book_image, status: { owner: { id, name, email }, checkedOut, due_date }}) => { %>
+    <% checkedOutBooks.forEach(({title, author, book_image, status: { owner: { id, name, email }, checkedOut, due_date }}) => { %>
             <div class="card">
             <div class="card-body">
                 <h3 class="card-title">Currently checked out by: <%= name.toUpperCase() %></h3>
                 <h6 class="card-title">Contact Info: <%= email %></h6>
                 <p class="card-text">Title: <%= title %></p>
+                <p class="card-text">By: <%= author.toUpperCase() %></p>
                 <p class="card-text">Date Checked Out: <%= checkedOut %></p>
                 <p class="card-text">Due Date: <%= due_date %></p>
                 <a href = "mailto:<%= email %>">Send Email</a>

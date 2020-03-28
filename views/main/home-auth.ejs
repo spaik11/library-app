@@ -49,7 +49,7 @@
                             <% if (user.id === status.owner.id) { %>
                                 <p style="color: blue">Available: Currently Reading.</p>
                             <% } else { %>
-                                <p style="color: red;">Available: Not yet...</p>
+                                <p style="color: red;">Available: <%= status.due_date %></p>
                             <% } %>
                         <% } %>
                             <a href="/api/books/single-book/<%= title %>">More Info</a>
