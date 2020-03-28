@@ -12,6 +12,7 @@ module.exports = {
     getSingleBook: (req, res, next) => {
         Book.findOne({ title: req.params.title }, (err, book) => {
             if (err) return next(err);
+            console.log(book)
             return res.render('main/single-book', { book, errors: req.flash('error') });
         });
     },
