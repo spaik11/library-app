@@ -57,7 +57,7 @@ module.exports = {
             book.status.checkedOut = moment().format('lll');
             book.status.checkedIn = '';
             book.status.due_date = moment().add(14, 'days').format('lll');
-            
+
             book.save((err) => {
                 if (err) return next(err);
                 return res.redirect(`/api/books/single-book/${req.params.title}`);
@@ -72,7 +72,7 @@ module.exports = {
             if (user.checked_books.length > 0) {
                 Book.findOne({ title: req.params.title }, (err, book) => {
                     if (err) return next();
-                    return res.render('main/single-book', { book, errors: 'You can only check out one book at a time!' });
+                    return res.render('main/single-book', { book, errors: 'Only one book at a time!' });
                 });
                 return;
             }
