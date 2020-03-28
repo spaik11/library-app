@@ -57,7 +57,7 @@ module.exports = {
             book.status.checkedOut = moment().format('lll');
             book.status.checkedIn = '';
             book.status.due_date = moment().add(14, 'days').format('lll');
-
+            
             book.save((err) => {
                 if (err) return next(err);
                 return res.redirect(`/api/books/single-book/${req.params.title}`);

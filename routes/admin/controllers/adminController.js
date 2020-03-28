@@ -1,4 +1,5 @@
 const Book = require('../books/models/Book');
+const moment = require('moment');
 
 module.exports = {
     getAdminHome: (req, res, next) => {
@@ -34,7 +35,7 @@ module.exports = {
             book.description = description;
             book.amazon_product_url = amazon_product_url;
             book.status.available = true;
-    
+
             book.save((err) => {
                 if (err) return res.render('admin/add-books', { errors: 'The book did not save..' });
                 return res.render('admin/add-books', { message: 'Book was added to the library!' });
@@ -55,6 +56,7 @@ module.exports = {
     viewCheckedOutBooks: (req, res, next) => {
         Book.find({}).then((books) => {
             const checkedOutBooks = books.filter((book) => !book.status.available);
+            
             return res.render('admin/books-out', { checkedOutBooks });
         })
         .catch((err) => next(err));

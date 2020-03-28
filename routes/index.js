@@ -1,12 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('./admin/books/models/Book');
+const moment = require('moment');
 
 router.get('/', (req, res, next) => {
     Book.find({}).then((book) => {
       book.sort((a, b) => a.rank - b.rank);
+      let userDueDate = new Date(req.user.checked_books[0].due_date).toISOString();
+      let checkDueDate = moment().isSameOrAfter(userDueDate);
+
       if (req.isAuthenticated()) {
-        return res.render('main/home-auth', { book, errors: req.flash('error') });
+        return res.render('main/home-auth', { book, checkDueDate, errors: req.flash('error') });
       } else {
         return res.render('main/home', { book });
       }
