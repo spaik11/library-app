@@ -10,12 +10,24 @@ const UserSchema = new mongoose.Schema({
     },
     address: { type: String, default: 'Please Update Address' },
     favorites: { type: [], default: []},
-    checked_books: [{
-        bookTitle: String,
-        checkOut: String,
-        checkIn: String,
-        due_date: String
-    }],
+    checked_books: [
+        {
+            book: { type: mongoose.Schema.Types.ObjectId, ref: 'Book' },
+            bookTitle: String,
+            checkOut: String,
+            checkIn: String,
+            due_date: String
+        }
+    ],
+    history: [
+        {
+            book: String,
+            bookTitle: String,
+            checkOut: String,
+            checkIn: String,
+            due_date: String
+        }
+    ],
     admin: { type: Boolean, default: false }
 });
 
