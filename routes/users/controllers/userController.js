@@ -74,7 +74,7 @@ module.exports = {
 
         try {
             if (user) {
-                return res.render('auth/register',);
+                return res.render('auth/register', { error: 'User already exists' });
             } else {
                 user = await User.create({
                     ['profile.name']: name,
