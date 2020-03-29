@@ -47,6 +47,7 @@ module.exports = {
 
     deleteBook: (req, res, next) => {
         Book.findOneAndDelete({ title: req.params.title }).then((book) => {
+            // Adjust the ranking when you delete
             if (!book) return res.redirect('/');
             return res.render('admin/delete-book', { book, message: 'Book was successfully deleted.' });
         })
@@ -56,7 +57,7 @@ module.exports = {
     viewCheckedOutBooks: (req, res, next) => {
         Book.find({}).then((books) => {
             const checkedOutBooks = books.filter((book) => !book.status.available);
-            
+
             return res.render('admin/books-out', { checkedOutBooks });
         })
         .catch((err) => next(err));

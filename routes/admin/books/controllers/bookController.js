@@ -17,6 +17,10 @@ module.exports = {
         });
     },
 
+    getHistory: (req, res, next) => {
+        return res.render('main/history');
+    },
+
     addToFavorites: (req, res, next) => {
         User.findOne({ email: req.user.email }).then((user) => {
             if (user.favorites.includes(req.params.title)) {
@@ -26,12 +30,14 @@ module.exports = {
                 });
                 return;
             }
-
-            user.favorites.push( req.params.title );
-            
-            user.save((err) => {
-                if (err) return next(err);
-                return res.redirect('/');
+            // should push in the book ID and the book title here so I can render the title
+            Book.findOne({ _id: req.params._id }).then((book) => {
+                user.favorites.push({title: book.title});
+                
+                user.save((err) => {
+                    if (err) return next(err);
+                    return res.redirect('/');
+                })
             })
         })
         .catch((err) => next(err));

@@ -8,6 +8,7 @@ Features:
   * **You can only check out one book at a time!**
   * **The book will be due in 14 days of when you check it out**
   * **Add a book to your favorites**
+  * **You can view all the books you previously checked out on your history page**
   * **There is an option to buy the book through a link to Amazon**
 * Admin:
   * **Administrator can add/delete books to the database**
@@ -30,6 +31,8 @@ Features:
 * **/favorites** -  this page will list all the books you clicked as a favorite.
 
 * **/checkedout && /checkedin** -  this route will allow a user to check a book out and in. The homepage will show the current book that is checked out.
+  
+* **/history** - this page will list all of the books you have checked out previously.
 
 ***/api/admin***
 * **/addbook** - administrator will be able to add a book to the database.

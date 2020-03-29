@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>History</title>
+        <% include ../partials/head %> 
+    </head>
+    <body>
+    <% include ../partials/nav %> 
+    <div id="container" class="fluid">
+    <main role="main">
+    <% include ../partials/jumbotron %> 
+    <% if (errors.length > 0) { %>
+        <div class ="alert alert-danger alert-dismissible"> 
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <%= errors %>
+        </div> 
+    <% } %>
+    <div class="container">
+        <% if (user.history.length > 0) { %>
+        <h1 class="admin">My History</h1>
+        <hr/>
+        <% user.history.forEach(({book, bookTitle, checkOut, checkIn, due_date}) => { %>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title"><%= bookTitle %></h3>
+                    <p class="card-text">Book ID: <%= book %> </p>
+                    <p class="card-text">Date Checked Out: <%= checkOut %> </p>
+                    <p class="card-text">Date Checked In: <%= checkIn %></p>
+                    <p class="card-text">Due Date: <%= due_date %></p>
+                </div>
+                </div>
+        <% }) %>
+        <% } else {%>
+            <h1 class="admin">Your history is empty!</h1>
+        <% } %>
+    </div>
+    </main>
+</div>
+<% include ../partials/footer %> 
+<% include ../partials/scripts %> 
+</body>
+</html>
