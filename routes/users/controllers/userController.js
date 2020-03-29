@@ -74,8 +74,7 @@ module.exports = {
 
         try {
             if (user) {
-                res.send('User Exists');
-                return req.flash('errors', 'User Already Exists');
+                return res.render('auth/register',);
             } else {
                 user = await User.create({
                     ['profile.name']: name,
@@ -89,7 +88,7 @@ module.exports = {
                     .then((user) => {
                         req.login(user, (err) => {
                             if (err) {
-                                return res.status(400).json({ confirmation: false, message: err});
+                                return next(err);
                             } else {
                                 return res.redirect('/');
                             }

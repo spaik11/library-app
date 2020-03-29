@@ -31,13 +31,11 @@ module.exports = {
                 return;
             }
             // should push in the book ID and the book title here so I can render the title
-            Book.findOne({ _id: req.params._id }).then((book) => {
-                user.favorites.push({title: book.title});
-                
-                user.save((err) => {
-                    if (err) return next(err);
-                    return res.redirect('/');
-                })
+            user.favorites.push( req.params.title );
+            
+            user.save((err) => {
+                if (err) return next(err);
+                return res.redirect('/');
             })
         })
         .catch((err) => next(err));
