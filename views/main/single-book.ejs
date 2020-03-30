@@ -35,7 +35,6 @@
         <h5>Author: <%= book.author.toUpperCase() %></h5>
         <p><%=book.description%></p>
         </div>
-    
     <div id="outer">
         <div class="inner">
             <div class="btn-group" role="group">
@@ -61,6 +60,8 @@
             </form>
         </div>
         </div>
+    <% } else if (!book.status.available) { %>
+
     <% } else { %>
         <div class="inner">
         <form method="POST" action="/api/books/checkoutbook/<%= book.title %>?_method=PUT">

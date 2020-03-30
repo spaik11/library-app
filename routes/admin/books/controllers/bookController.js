@@ -66,6 +66,7 @@ module.exports = {
             (callback) => {
                 Book.findOne({ title: req.params.title }, (err, book) => {
                     if (err) next(err);
+
                     book.status.available = false;
                     book.status.owner.id = req.user._id;
                     book.status.owner.name = req.user.profile.name;
