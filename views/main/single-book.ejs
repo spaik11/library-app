@@ -61,7 +61,7 @@
         </div>
         </div>
     <% } else if (!book.status.available) { %>
-
+        
     <% } else { %>
         <div class="inner">
         <form method="POST" action="/api/books/checkoutbook/<%= book.title %>?_method=PUT">
