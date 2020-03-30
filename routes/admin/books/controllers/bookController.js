@@ -30,7 +30,7 @@ module.exports = {
                 });
                 return;
             }
-            // should push in the book ID and the book title here so I can render the title
+
             user.favorites.push( req.params.title );
             
             user.save((err) => {
@@ -111,7 +111,11 @@ module.exports = {
             },
             (book, callback) => {
                 User.findOne({ email: req.user.email }).then((user) => {
+                    let userDueDate = new Date(user.checked_books[0].due_date).toISOString();
+                    let checkDueDate = moment().isSameOrAfter(userDueDate);
+
                     user.checked_books[0].checkIn = book.status.checkedIn;
+                    user.checked_books[0].late = checkDueDate;
                     user.history.push(user.checked_books[0]);
                     user.checked_books.pop();
         

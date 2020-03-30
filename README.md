@@ -26,12 +26,12 @@ Features:
 * **/profile** -  this page will allow you to view the user profile.
 
 * **/update-profile** -  You will be able to update some basic user info, including changing your password.  
-  
+
 ***/api/books***
 * **/favorites** -  this page will list all the books you clicked as a favorite.
 
 * **/checkedout && /checkedin** -  this route will allow a user to check a book out and in. The homepage will show the current book that is checked out.
-  
+
 * **/history** - this page will list all of the books you have checked out previously.
 
 ***/api/admin***
@@ -43,7 +43,7 @@ Features:
 
 ---
 ### Dependencies
-* NYTimes API  
+* NYTimes API 
 * Faker
 * Moment  
 * Bcrypt JS

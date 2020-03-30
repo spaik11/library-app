@@ -21,7 +21,7 @@
         <% if (user.history.length > 0) { %>
         <h1 class="admin">My History</h1>
         <hr/>
-        <% user.history.forEach(({book, bookTitle, checkOut, checkIn, due_date}) => { %>
+        <% user.history.forEach(({book, bookTitle, checkOut, checkIn, due_date, late}) => { %>
             <div class="card">
                 <div class="card-body admin">
                     <h3 class="card-title"><%= bookTitle %></h3>
@@ -29,6 +29,9 @@
                     <p class="card-text">Date Checked Out: <%= checkOut %> </p>
                     <p class="card-text">Date Checked In: <%= checkIn %></p>
                     <p class="card-text">Due Date: <%= due_date %></p>
+                    <% if (late) { %>
+                        <p class="card-text" style="color: red">Late</p>
+                    <% } %>
                 </div>
                 </div>
         <% }) %>

@@ -25,7 +25,8 @@ const UserSchema = new mongoose.Schema({
             bookTitle: String,
             checkOut: String,
             checkIn: String,
-            due_date: String
+            due_date: String,
+            late: { type: Boolean, default: false }
         }
     ],
     admin: { type: Boolean, default: false }

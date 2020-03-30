@@ -10,7 +10,7 @@
     <div id="container" class="fluid">
     <main role="main">
     <% if (errors.length > 0) { %>
-        <div class ="alert alert-danger alert-dismissible text-center" style="width: 15px;"> 
+        <div class ="alert alert-danger alert-dismissible text-center" style="width: 500px;"> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -46,31 +46,32 @@
     <hr />
     <div class="home-container">
             <% book.forEach(({ rank, title, description, book_image, _id, status }) => { %>
-                <div class="col-md-4" style="width: 200px;">
+                <div class="col m-5 m-5" style="width: 200px;">
                     <div class="card">
                     <img
                         src="<%= book_image %>"
                         class="card-img-top"
+                        style="width: 200px"
                         alt="..."
                     />
-                    <div class="card-body">
+                    <div class="card-body" style="width: 200px;">
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
                         <% if (status.available) { %>
-                            <div class="container-fluid">
+                            <div class="container-fluid" style="padding-left: 0; padding-right: 0">
                                 <div class="alert alert-success text-center" role="alert">
                                     <a href="/api/books/single-book/<%= title %>" class="alert-link">Available!</a>
                                 </div>
                             </div>
                         <% } else { %>
                             <% if (user.id === status.owner.id) { %>
-                                <div class="container-fluid">
+                                <div class="container-fluid" style="padding-left: 0; padding-right: 0">
                                     <div class="alert alert-info text-center" role="alert">
-                                        <a href="/api/books/single-book/<%= title %>" class="alert-link">Current Read..</a>
+                                        <a href="/api/books/single-book/<%= title %>" class="alert-link">Current Read</a>
                                     </div>
                                 </div>
                             <% } else { %>
-                                <div class="container-fluid">
+                                <div class="container-fluid" style="padding-left: 0; padding-right: 0">
                                     <div class="alert alert-danger text-center" role="alert">
                                         <a href="/api/books/single-book/<%= title %>" class="alert-link">Available on <%= status.due_date.slice(0, 12) %></a>
                                     </div>

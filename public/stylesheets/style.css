@@ -9,8 +9,8 @@ html {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 50px;
+  padding-right: 75px;
 }
 
 .home-col-md-4 {
