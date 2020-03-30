@@ -1,50 +1,37 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);">
-    <a href="/"><img src="/images/book_logo.jpg" style="width:75px; height:50px;" /></a>
-    <button
-    class="navbar-toggler"
-    type="button"
-    data-toggle="collapse"
-    data-target="#navbarsExampleDefault"
-    aria-controls="navbarsExampleDefault"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-    >
-    <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-        <a class="nav-link" href="/"
-        >Home <span class="sr-only">(current)</span></a
-        >
-      </li>
+<nav class="navbar  navbar-toggleable-md   navbar-inverse bg-primary">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
       <% if (user) { %>
-        <li class="nav-item active" style="padding-left: 15px;">
-          <a class="nav-link" href="/api/books/favorites">Favorites</a>
-        </li>
-        <li class="nav-item active" style="padding-left: 15px;">
-          <a class="nav-link" href="/api/books/history">History</a>
-        </li>
-        <li class="nav-item active" style="padding-left: 15px;">
-          <a class="nav-link" href="/api/admin/">Admin</a>
-        </li>
+        <a class="navbar-brand" href="/api/books/favorites">Favorites</a>
+        <a class="navbar-brand" href="/api/books/history">History</a>
+        <a class="navbar-brand" href="/api/admin/">Admin</a>
       <% } %>
-    </ul>
-    <% if (!user) { %>
-    <span class="myRegisterNav">
-      <span style="color:white; padding-left:20px">
-        <a style="color:white;" href="/api/users/register">Register</a>/<a
-          style="color:white;"
-          href="/api/users/login">Login</a></span>
-    </span>
-    <% } else { %>
-      <span 
-        class="myNavGreeting"> 
-        <a 
-          href="/api/users/profile"
-        ><%= user.profile.name.toUpperCase() %> </a>
-      </span>
-      <span class="myNavLogout"><a href="/api/users/logout">Logout</a></span>
-    <% } %> 
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <form class="navbar-form navbar-right">
+        <% if (!user) { %>
+          <div class="form-group">
+            <a href="/api/users/register" class="btn btn-success">Register</a>
+          </div>
+          <div class="form-group">
+            <a href="/api/users/login" class="btn btn-success">Login</a>
+          </div>
+          <% } else { %>
+          <div class="form-group">
+            <a href="/api/users/profile" class="btn btn-success"><%= user.profile.name.toUpperCase() %></a>
+          </div>
+          <div class="form-group">
+            <a href="/api/users/logout" class="btn btn-success">Log out</a>
+          </div>
+        <% } %>
+      </form>
+    </div>
   </div>
 </nav>

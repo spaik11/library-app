@@ -7,7 +7,6 @@
 <body>
 <% include ../partials/nav %>
 <div class="container">
-    <div class="row">
     <div
         class="
         col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form"
@@ -38,22 +37,20 @@
         <%= message %>
         </div>
         <% } %>
-        <h2>Add a New Book:</h2>
+
+        <h2 class="admin">Add a New Book:</h2>
         <hr/>
         <br />
         <form role="form" method="POST" action="/api/admin/addbook">
         <fieldset>
-            <div class="form-group">
             <input type="text" name="rank" class="form-control input-lg" placeholder="Rank"/>
             <input type="text" name="title" class="form-control input-lg" placeholder="Title"/>
             <input type="text" name="author" class="form-control input-lg" placeholder="Author"/>
             <input type="text" name="description" class="form-control input-lg" placeholder="Description"/>
             <input type="text" name="book_image" class="form-control input-lg" placeholder="Book Image Link"/>
             <input type="text" name="amazon_product_url" class="form-control input-lg" placeholder="Amazon Product Link"/>
-            </div>
             <br />
             <hr/>
-            <div class="row">
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <input
                 type="submit"
@@ -61,11 +58,11 @@
                 value="Add"
                 />
             </div>
-            </div>
+
         </fieldset>
         </form>
     </div>
-    </div>
+
 </div>
 <% include ../partials/scripts %>
 </body>

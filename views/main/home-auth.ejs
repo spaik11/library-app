@@ -6,9 +6,9 @@
     </head>
     <body>
     <% include ../partials/nav %> 
+    <% include ../partials/jumbotron %> 
     <div id="container" class="fluid">
     <main role="main">
-    <% include ../partials/jumbotron %> 
     <% if (errors.length > 0) { %>
         <div class ="alert alert-danger alert-dismissible"> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -34,10 +34,9 @@
         </div>
     </div>
     <hr />
-    <div class="container">
-        <div class="row">
+    <div class="home-container">
             <% book.forEach(({ rank, title, description, book_image, _id, status }) => { %>
-                <div class="col-md-4" style="width:20rem;">
+                <div class="col-md-4" style="width: 200px;">
                     <div class="card">
                     <img
                         src="<%= book_image %>"
@@ -62,7 +61,6 @@
                 </div>
             <% }) %>
         </div>
-    </div>
     </main>
 </div>
 <% include ../partials/footer %> 

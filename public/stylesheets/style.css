@@ -4,21 +4,19 @@ html {
   box-sizing: border-box;
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
 }
-a {
-text-decoration: none;
+
+.home-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  padding-left: 50px;
+  padding-right: 50px;
 }
+
 .home-col-md-4 {
 margin-bottom: 50px;
 }
-.my-jumbotron {
-position: relative;
-background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%);
-background-color: #172d1c;
-width: 100%;
-background-size: cover;
-color: #fff;
-height: 18em;
-}
+
 .card-img-top {
 height: 300px;
 }
@@ -31,51 +29,7 @@ border-radius: 0;
 }
 .my-form {
 width: 50%;
-margin: 200px auto 0 auto;
-}
-.myRegisterNav {
-color: white;
-padding-left: 20px;
-font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-}
-.myRegisterNav a {
-color: white;
-text-decoration: none;
-font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-}
-.myRegisterNav a:hover {
-color: #090979;
-}
-.myNavGreeting {
-color: white;
-padding: 0 20px;
-font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-}
-.myNavGreeting a {
-color: white;
-}
-.myNavGreeting a:hover {
-color: #090979;
-text-decoration: none;
-}
-.myNavLogout {
-color: white;
-padding-left: 10px;
-}
-.myNavLogout a {
-color: white;
-}
-.myNavLogout a:hover {
-color: #090979;
-}
-.nav-category-list {
-text-decoration: none;
-}
-.nav-category-list:hover {
-color: #090979;
-}
-.profile {
-margin-top: 150px;
+margin: 100px auto 0 auto;
 }
 .profile-imageholder {
 height: 175px;
@@ -109,9 +63,23 @@ width: 175px;
     display: inline-block;
 }
 
-@media screen and (max-width: 730px) {
-  .my-h1 {
-    padding-top: 50px;
-    font-size: 3.5em;
-  }
-}
+/*
+Code snippet by maridlcrmn for Bootsnipp.com
+Follow me on Twitter @maridlcrmn
+*/
+
+.navbar-brand { position: relative; z-index: 2; }
+
+.navbar-nav.navbar-right .btn { position: relative; z-index: 2; padding: 4px 20px; margin: 10px auto; }
+
+.navbar .navbar-collapse { position: relative; }
+.navbar .navbar-collapse .navbar-right > li:last-child { padding-left: 22px; }
+
+.navbar .nav-collapse { position: absolute; z-index: 1; top: 0; left: 0; right: 0; bottom: 0; margin: 0; padding-right: 120px; padding-left: 80px; width: 100%; }
+.navbar.navbar-default .nav-collapse { background-color: #f8f8f8; }
+.navbar.navbar-inverse .nav-collapse { background-color: #222; }
+.navbar .nav-collapse .navbar-form { border-width: 0; box-shadow: none; }
+.nav-collapse>li { float: right; }
+
+.btn.btn-circle { border-radius: 50px; }
+.btn.btn-outline { background-color: transparent; }

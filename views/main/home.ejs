@@ -6,13 +6,12 @@
     </head>
     <body>
     <% include ../partials/nav %> 
+    <% include ../partials/jumbotron %> 
     <div id="container" class="fluid">
     <main role="main">
-    <% include ../partials/jumbotron %> 
-    <div class="container">
-        <div class="row">
+    <div class="home-container">
             <% book.forEach(({rank, description, book_image, amazon_product_url}) => { %>
-                <div class="col-md-4" style="width:20rem;">
+                <div class="col-md-4" style="width: 200px;">
                     <div class="card">
                     <img
                         src="<%= book_image %>"
@@ -27,7 +26,6 @@
                 </div>
             <% }) %>
         </div>
-    </div>
     </main>
 </div>
 <% include ../partials/footer %> 
