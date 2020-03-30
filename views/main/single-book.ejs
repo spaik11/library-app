@@ -21,12 +21,6 @@
         class="col-md-6 col-xs-6"
         
     >
-    <div class="caption" >
-        <h3>Rank: <%=book.rank%></h3>
-        <h5>Title: <%= book.title %></h5>
-        <h5>Author: <%= book.author.toUpperCase() %></h5>
-        <p><%=book.description%></p>
-        </div>
     <% if (errors.length > 0) { %>
         <div class ="alert alert-danger alert-dismissible"> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -35,6 +29,13 @@
         <%= errors %>
         </div> 
     <% } %>
+    <div class="caption" >
+        <h3>Rank: <%=book.rank%></h3>
+        <h5>Title: <%= book.title %></h5>
+        <h5>Author: <%= book.author.toUpperCase() %></h5>
+        <p><%=book.description%></p>
+        </div>
+    
     <div id="outer">
         <div class="inner">
             <div class="btn-group" role="group">

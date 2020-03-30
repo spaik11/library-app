@@ -54,6 +54,14 @@ module.exports = {
     },
 
     checkOutBookAsync: (req, res, next) => {
+        if (req.user.checked_books.length > 0) {
+            Book.findOne({ title: req.params.title }, (err, book) => {
+                if (err) return next(err);
+                return res.render('main/single-book', { book, errors: 'Only one book at a time!' });
+            })
+            return;
+        };
+
         async.waterfall([
             (callback) => {
                 Book.findOne({ title: req.params.title }, (err, book) => {
@@ -74,9 +82,7 @@ module.exports = {
             },
             (book, callback) => {
                 User.findOne({ email: req.user.email }).then((user) => {
-                    if (user.checked_books.length > 0) {
-                            return res.render('main/single-book', { book, errors: 'Only one book at a time!' });
-                    };
+                    if (!user) return res.redirect('/');
     
                     user.checked_books.push({ 
                         book: book._id,
