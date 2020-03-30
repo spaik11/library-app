@@ -10,7 +10,7 @@
     <div id="container" class="fluid">
     <main role="main">
     <% if (errors.length > 0) { %>
-        <div class ="alert alert-danger alert-dismissible"> 
+        <div class ="alert alert-danger alert-dismissible text-center" style="width: 15px;"> 
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
         </button>
@@ -18,20 +18,30 @@
         </div> 
     <% } %>
     <div class="admin">
-        <div>
-            <h3>Current Book:</h3>
+            <h1 class="admin">Current Book:</h1>
+            <div class="admin">
                 <% if (user.checked_books.length > 0) { %>
-                    <p>Title: <%= user.checked_books[0].bookTitle %></p>
-                    <p>Checked Out: <%= user.checked_books[0].checkOut %></p>
+                    <p><b>Title:</b> <%= user.checked_books[0].bookTitle %></p>
+                    <p><b>Checked Out:</b> <%= user.checked_books[0].checkOut %></p>
+                    <div style="width: 250px;">
                     <% if (checkDueDate) { %>
-                        <p style="color: red">Due: <%= user.checked_books[0].due_date %></p>
+                        <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
+                        <div class="alert alert-danger text-center" role="alert">
+                            Due on <%= user.checked_books[0].due_date %>
+                        </div>
+                        </div>
                     <% } else { %>
-                        <p style="color: green">Due: <%= user.checked_books[0].due_date %></p>
+                        <div class="container-fluid" style="padding-left: 0; padding-right: 0;">
+                        <div class="alert alert-success text-center" role="alert">
+                            Due on <%= user.checked_books[0].due_date %>
+                        </div>
+                        </div>
                     <% } %>
+                    </div>
                 <% } else { %>
-                    <p>You do not currently have a book checked out.</p>
+                    <h3>...</h3>
                 <% } %>
-        </div>
+            </div>
     </div>
     <hr />
     <div class="home-container">
@@ -47,15 +57,26 @@
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
                         <% if (status.available) { %>
-                            <p style="color: green">Available: Yes! Click the link below.</p>
+                            <div class="container-fluid">
+                                <div class="alert alert-success text-center" role="alert">
+                                    <a href="/api/books/single-book/<%= title %>" class="alert-link">Available!</a>
+                                </div>
+                            </div>
                         <% } else { %>
                             <% if (user.id === status.owner.id) { %>
-                                <p style="color: blue">Available: Currently Reading.</p>
+                                <div class="container-fluid">
+                                    <div class="alert alert-info text-center" role="alert">
+                                        <a href="/api/books/single-book/<%= title %>" class="alert-link">Current Read..</a>
+                                    </div>
+                                </div>
                             <% } else { %>
-                                <p style="color: red;">Available: <%= status.due_date %></p>
+                                <div class="container-fluid">
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        <a href="/api/books/single-book/<%= title %>" class="alert-link">Available on <%= status.due_date.slice(0, 12) %></a>
+                                    </div>
+                                </div>
                             <% } %>
                         <% } %>
-                            <a href="/api/books/single-book/<%= title %>">More Info</a>
                     </div>
                     </div>
                 </div>

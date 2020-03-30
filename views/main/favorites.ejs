@@ -24,11 +24,11 @@
     <% user.favorites.forEach((favorite) => { %>
         <form method="post" action="/api/books/deletebook/<%= favorite %>?_method=DELETE">
             <div class="card-body admin">
-                <h5 class="card-title" style="width: 40em;"><a href="/api/books/single-book/<%= favorite %>"><%= favorite %></a>
+                <h3 class="card-title" style="width: 40em;"><a href="/api/books/single-book/<%= favorite %>"><%= favorite %></a>
                     <button type="submit" class="btn btn-danger">
                         Delete
                     </button>
-                </h5>
+                </h3>
                 </div>
             </form>
     <% }) %>

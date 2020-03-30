@@ -40,16 +40,13 @@ module.exports = {
                 if (err) return res.render('admin/add-books', { errors: 'The book did not save..' });
                 return res.render('admin/add-books', { message: 'Book was added to the library!' });
             })
-            .catch((err) => next(err));
         })
         .catch((err) => next(err));
     },
 
     deleteBook: (req, res, next) => {
         Book.findOneAndDelete({ title: req.params.title }).then((book) => {
-            // Adjust the ranking when you delete
-            if (!book) return res.redirect('/');
-            return res.render('admin/delete-book', { book, message: 'Book was successfully deleted.' });
+            return res.redirect('/api/admin/deletebook');
         })
         .catch((err) => next(err));
     },

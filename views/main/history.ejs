@@ -23,7 +23,7 @@
         <hr/>
         <% user.history.forEach(({book, bookTitle, checkOut, checkIn, due_date}) => { %>
             <div class="card">
-                <div class="card-body">
+                <div class="card-body admin">
                     <h3 class="card-title"><%= bookTitle %></h3>
                     <p class="card-text">Book ID: <%= book %> </p>
                     <p class="card-text">Date Checked Out: <%= checkOut %> </p>
