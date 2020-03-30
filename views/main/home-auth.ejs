@@ -48,12 +48,14 @@
             <% book.forEach(({ rank, title, description, book_image, _id, status }) => { %>
                 <div class="col m-5 m-5" style="width: 200px;">
                     <div class="card">
-                    <img
-                        src="<%= book_image %>"
-                        class="card-img-top"
-                        style="width: 200px"
-                        alt="..."
-                    />
+                    <a href="/api/books/single-book/<%= title %>">
+                        <img
+                            src="<%= book_image %>"
+                            class="card-img-top"
+                            style="width: 200px"
+                            alt="..."
+                        />
+                    </a>
                     <div class="card-body" style="width: 200px;">
                         <h5 class="card-title">Rank: <%= rank %></h5>
                         <p class="card-text"><%= description %></p>
