@@ -15,6 +15,13 @@ Features:
   * **Administrator can view all the books that are currently checked out**
 
 ---
+### Dependencies
+* NYTimes API - Used the NYTimes API to feed my database with the most recent best sellers.
+* Faker - created random login images for users.
+* Moment - used to date stamp whenever a user checked a book in and out. Also used the built in method to check if a book was turned in late.
+* Bcrypt JS - encrypted user passwords for a secure database.
+
+---
 ### Routes
 ***/*** - will render the home page where it will list a few features for the user.  
 
@@ -40,10 +47,4 @@ Features:
 * **/deletebook** - administrator will be able to delete a book from the database.
 
 * **/viewcheckedbooks** - administrator will be able to view all the books that are currently checked out.
-
 ---
-### Dependencies
-* NYTimes API 
-* Faker
-* Moment  
-* Bcrypt JS
