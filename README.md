@@ -37,7 +37,7 @@ Features:
 ***/api/books***
 * **/favorites** -  this page will list all the books you clicked as a favorite.
 
-* **/checkedout && /checkedin** -  this route will allow a user to check a book out and in. The homepage will show the current book that is checked out.
+* **/single-book** -  this page will provide more details on the book and you will have the option to check the book in and out based on availability.
 
 * **/history** - this page will list all of the books you have checked out previously.
 

@@ -35,7 +35,9 @@ module.exports = {
             
             user.save((err) => {
                 if (err) return next(err);
-                return res.redirect('/');
+                return Book.findOne({ title: req.params.title }, (err, book) => {
+                    return res.render('main/single-book', { book, success: 'Added to your favorites!' });
+                })
             })
         })
         .catch((err) => next(err));
@@ -98,10 +100,17 @@ module.exports = {
                 })
             } 
         ])
-        return res.redirect(`/api/books/single-book/${req.params.title}`);
+        return Book.findOne({ title: req.params.title }, (err, book) => {
+            if (err) next(err);
+            req.flash('success', 'Please return in 14 days or there is a fee of 100 toilet papers.')
+            return res.redirect(`/api/books/single-book/${req.params.title}`);
+        })
     },
 
     checkInBookAsync: (req, res, next) => {
+        let userDueDate = new Date(req.user.checked_books[0].due_date).toISOString();
+        let checkDueDate = moment().isSameOrAfter(userDueDate);
+
         async.waterfall([
             (callback) => {
                 Book.findOne({ title: req.params.title }).then((book) => {
@@ -118,8 +127,6 @@ module.exports = {
             },
             (book, callback) => {
                 User.findOne({ email: req.user.email }).then((user) => {
-                    let userDueDate = new Date(user.checked_books[0].due_date).toISOString();
-                    let checkDueDate = moment().isSameOrAfter(userDueDate);
 
                     user.checked_books[0].checkIn = book.status.checkedIn;
                     user.checked_books[0].late = checkDueDate;
@@ -132,6 +139,12 @@ module.exports = {
                 })
             }
         ])
-        return res.redirect(`/api/books/single-book/${req.params.title}`);
+        if (checkDueDate) {
+            req.flash('errors', 'This book was checked in late.. You will be contacted shortly..')
+            return res.redirect(`/api/books/single-book/${req.params.title}`);
+        } else {
+            req.flash('success', 'Thank you for returning the book. I Hope you enjoyed it!')
+            return res.redirect(`/api/books/single-book/${req.params.title}`);
+        };
     }
 };

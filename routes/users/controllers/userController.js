@@ -56,7 +56,7 @@ module.exports = {
                         if (!result) return res.render('auth/update-profile', { errors: 'The old password does not match' });
                         user.password = newPassword;
 
-                        user.save().then((user) => res.redirect('/api/users/profile'))
+                        user.save().then((user) => res.render('auth/profile', { success: 'Password updated!' }))
                             .catch((err) => next(err));
                     })
                     .catch((err) => next(err));

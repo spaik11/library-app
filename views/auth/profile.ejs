@@ -8,9 +8,17 @@
     <% include ../partials/nav %>
     <div class="container profile">
         <div
-            class="
-            col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form"
+        class="
+        col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 my-form"
         >
+        <% if (success.length > 0) { %>
+            <div class ="alert alert-success alert-dismissible"> 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <%= success %>
+            </div> 
+        <% } %>
             <hr/>
             <br />
             <h1>Profile for <%= user.profile.name %> </h1>
