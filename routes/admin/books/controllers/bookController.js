@@ -136,7 +136,7 @@ module.exports = {
             }
         ])
         if (checkDueDate) {
-            req.flash('errors', 'This book was checked in late.. You will be contacted shortly..')
+            req.flash('message', 'This book was checked in late.. You will be contacted shortly..')
             return res.redirect(`/api/books/single-book/${req.params.title}`);
         } else {
             req.flash('success', 'Thank you for returning the book. I Hope you enjoyed it!')
