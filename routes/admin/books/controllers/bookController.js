@@ -100,11 +100,8 @@ module.exports = {
                 })
             } 
         ])
-        return Book.findOne({ title: req.params.title }, (err, book) => {
-            if (err) next(err);
-            req.flash('success', 'Please return in 14 days or there is a fee of 100 toilet papers.')
-            return res.redirect(`/api/books/single-book/${req.params.title}`);
-        })
+        req.flash('success', 'Please return in 14 days or there is a fee of 100 toilet papers.');
+        return res.redirect(`/api/books/single-book/${req.params.title}`);
     },
 
     checkInBookAsync: (req, res, next) => {
@@ -127,7 +124,6 @@ module.exports = {
             },
             (book, callback) => {
                 User.findOne({ email: req.user.email }).then((user) => {
-
                     user.checked_books[0].checkIn = book.status.checkedIn;
                     user.checked_books[0].late = checkDueDate;
                     user.history.push(user.checked_books[0]);
