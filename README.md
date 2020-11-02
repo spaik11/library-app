@@ -1,4 +1,4 @@
-# Book Library App
+# The Librarian
 ![](./public/images/books.gif)
 
 Come 'checkout' this simple library app! The list of books are the current NY Times Best Sellers.  
